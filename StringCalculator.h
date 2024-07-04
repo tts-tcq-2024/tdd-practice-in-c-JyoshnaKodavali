@@ -1,3 +1,7 @@
+#include <stdlib.h> // For atoi function
+#include <string.h> // For strtok function
+
+
 int add(const char* input){
   return 0;
 }
@@ -27,6 +31,28 @@ int add(const char* input) {
     while (token != NULL) {
         sum += atoi(token); // Convert token to integer and add to sum
         token = strtok(NULL, delim); // Get next token
+    }
+    
+    return sum;
+}
+
+int add(const char* input) {
+    // Temporary buffer to hold the input string
+    char buffer[256];
+    strncpy(buffer, input, sizeof(buffer));
+    buffer[sizeof(buffer) - 1] = '\0'; // Ensure null termination
+    
+    // Parse the input string using strtok
+    const char* delimiters = ",\n";
+    char* token = strtok(buffer, delimiters);
+    
+    // Variables to hold the numbers and sum
+    int sum = 0;
+    
+    // Loop through tokens and compute sum
+    while (token != NULL) {
+        sum += atoi(token); // Convert token to integer and add to sum
+        token = strtok(NULL, delimiters); // Get next token
     }
     
     return sum;
