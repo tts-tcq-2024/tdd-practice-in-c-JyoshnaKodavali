@@ -57,3 +57,30 @@ int add(const char* input) {
     
     return sum;
 }
+
+int add(const char* input) {
+    // Temporary buffer to hold the input string
+    char buffer[256];
+    strncpy(buffer, input, sizeof(buffer));
+    buffer[sizeof(buffer) - 1] = '\0'; // Ensure null termination
+    
+    // Parse the input string using strtok
+    const char* delimiters = ",";
+    char* token = strtok(buffer, delimiters);
+    
+    // Variables to hold the numbers and sum
+    int sum = 0;
+    
+    // Loop through tokens and compute sum
+    while (token != NULL) {
+        int num = atoi(token); // Convert token to integer
+        if (num <= 1000) {
+            sum += num; // Add to sum only if number is <= 1000
+        }
+        token = strtok(NULL, delimiters); // Get next token
+    }
+    
+    return sum;
+}
+
+
